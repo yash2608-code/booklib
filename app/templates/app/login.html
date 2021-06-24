@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Login</title>
+</head>
+<body>
+    <h1 align="center" style="text-decoration: underline;">Seller Login</h1>
+    {% if err %}
+    <p style="color: red;text-align: center;">{{err}}</p>
+    {% endif %}
+    <form action="{% url 'loginuser' %}" method="POST">{% csrf_token %}
+    <table align="center" border="2" cellspacing="0" cellpadding="8">
+        <tr>
+            <td>Email</td>
+            <td><input type="email" name="email" placeholder="Enter Email"></td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td><input type="password" name="passwd" placeholder="Enter Password"></td>
+        </tr>
+        <tr align="center">
+            <td colspan="2"><input type="submit" value="Register"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
