@@ -8,6 +8,7 @@
 </head>
 <body>
     <h1 align="center">Add Books</h1>
+    <form action="{% url 'addbooks' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
     <table border="2" cellspacing="0" cellpadding="8" align="center">
         <tr>
             <td>Book Name</td>
@@ -45,5 +46,6 @@
             <td align="center" colspan="2"><input type="submit" value="Upload Book"></td>
         </tr>
     </table>
+    </form>
 </body>
 </html>

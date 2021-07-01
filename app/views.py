@@ -4,6 +4,11 @@ from .models import *
 def IndexPage(request):
     return render(request, "app/index.html")
 
+def ShowBookPage(request):
+    AllbookData = Book.objects.all()
+    print(f"--------------------->ALL BOOK DATA->{AllbookData}")
+    return render(request, "app/showbooks.html",{'data':AllbookData})
+
 def RegisterPage(request):
     return render(request, "app/register.html")
 
@@ -42,3 +47,22 @@ def LoginUser(request):
     else:
         msg = "Seller Doesn't Found"
         return render(request, "app/login.html",{'err':msg})
+
+def AddBooks(request):
+    bname = request.POST['Bname']
+    aname = request.POST['Aname']
+    cat = request.POST['Bcate']
+    bimg = request.FILES['Bimg']
+    book = request.FILES['Book']
+    bprice = float(request.POST['Bookp'])
+
+    category = Category.objects.create(Cname=cat)
+    book = Book.objects.create(
+        Book_name=bname,
+        Author_name=aname,
+        Book_category=category,
+        Book_img = bimg,
+        Book = book,
+        BookPrice = bprice
+    )
+    return redirect("showbook")
