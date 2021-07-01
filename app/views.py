@@ -10,6 +10,9 @@ def RegisterPage(request):
 def LoginPage(request):
     return render(request, "app/login.html")
 
+def NewPage(request):
+    return render(request, "app/index-1.html")
+
 def RegisterUser(request):
     if request.method == 'POST':
         fn = request.POST['fname']
