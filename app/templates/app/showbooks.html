@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShowBooks</title>
+</head>
+<body>
+    <h1 align="center">All Books</h1>
+    <table border="2" cellspacing="0" cellpadding="8" align="center">
+        <tr>
+            <th>Book Name</th>
+            <th>Author Name</th>
+            <th>Book Image</th>
+            <th>Book File</th>
+            <th>Books Category</th>
+            <th>Book Price</th>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{i.Book_name}}</td>
+            <td>{{i.Author_name}}</td>
+            <td><img src="{{MEDIA_URL}}{{i.Book_img.url}}" width="100" height="100"></td>
+            <td><a href="{{MEDIA_URL}}{{i.Book.url}}" target="_blank">{{i.Book_name}}</a></td>
+            <td>{{i.Book_category}}</td>
+            <td>{{i.BookPrice}}</td>
+        </tr>
+        {% endfor %}
+    </table>    
+</body>
+</html>
