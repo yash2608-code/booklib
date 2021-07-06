@@ -5,9 +5,12 @@ def IndexPage(request):
     return render(request, "app/index.html")
 
 def ShowBookPage(request):
-    AllbookData = Book.objects.all()
-    print(f"--------------------->ALL BOOK DATA->{AllbookData}")
-    return render(request, "app/showbooks.html",{'data':AllbookData})
+    if 'id' in request.session and 'email' in request.session:
+        AllbookData = Book.objects.all()
+        print(f"--------------------->ALL BOOK DATA->{AllbookData}")
+        return render(request, "app/showbooks.html",{'data':AllbookData})
+    else:
+        return redirect('loginpage')
 
 def RegisterPage(request):
     return render(request, "app/register.html")
@@ -40,13 +43,22 @@ def LoginUser(request):
 
     if len(user) > 0:
         if user[0].passwd == pwd:
-            return redirect("indexpage")
+            request.session['id'] = user[0].id
+            request.session['fname'] = user[0].fname
+            request.session['email'] = user[0].email
+            return redirect("showbook")
         else:
             msg = "Password is incorrect"
             return render(request, "app/login.html",{'err':msg})
     else:
         msg = "Seller Doesn't Found"
         return render(request, "app/login.html",{'err':msg})
+
+def logout(request):
+    del request.session['id']
+    del request.session['fname']    
+    del request.session['email']
+    return redirect('loginpage')
 
 def AddBooks(request):
     bname = request.POST['Bname']

@@ -20,3 +20,10 @@ class Book(models.Model):
     Book_img = models.ImageField(upload_to="bookimages/",default="abc.jpg")
     Book = models.FileField(upload_to="books/",default="book1.pdf")
     BookPrice = models.FloatField(default=0.0)
+
+class User(models.Model):
+    fname = models.CharField(max_length=255,default="Firstname")
+    lname = models.CharField(max_length=255,default="Lastname")
+    email = models.EmailField(unique=True)
+    passwd = models.CharField(max_length=225,default="Password")
+    address = models.CharField(max_length=255,default="Address")
